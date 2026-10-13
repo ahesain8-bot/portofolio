@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahmed Hussein Hassan — Mobile & Front-End Developer</title>
+<meta name="description" content="Portfolio of Ahmed Hussein Hassan, Mobile & Front-End Developer with 5+ years in Flutter, React Native and ReactJS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07061a;--bg2:#0e0c2b;--card:rgba(255,255,255,.04);--border:rgba(255,255,255,.09);
+  --text:#ecebff;--muted:#9a98c3;
+  --indigo:#5b4bff;--pink:#ff3d9a;--cyan:#22e4ff;--amber:#ffb627;
+  --grad:linear-gradient(90deg,var(--indigo),var(--pink),var(--cyan),var(--amber));
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.6;overflow-x:hidden;cursor:none}
+h1,h2,h3,h4,.logo{font-family:'Syne',sans-serif}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--indigo),var(--pink));border-radius:8px}
+::selection{background:var(--pink);color:#fff}
+
+/* noise */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;opacity:.06;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+main,nav,footer{position:relative;z-index:2}
+
+/* cursor */
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:10000;border-radius:50%;transform:translate(-50%,-50%)}
+.cursor-dot{width:8px;height:8px;background:var(--cyan);box-shadow:0 0 12px var(--cyan),0 0 24px var(--cyan)}
+.cursor-ring{width:38px;height:38px;border:1.5px solid rgba(255,61,154,.7);transition:width .25s,height .25s,border-color .25s}
+.cursor-ring.hover{width:60px;height:60px;border-color:var(--amber)}
+@media (hover:none){.cursor-dot,.cursor-ring{display:none}body{cursor:auto}}
+
+/* loader */
+#loader{position:fixed;inset:0;background:var(--bg);z-index:10001;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transition:opacity .8s,visibility .8s}
+#loader.hide{opacity:0;visibility:hidden}
+.loader-initials{font-family:'Syne';font-weight:800;font-size:5rem;background:var(--grad);background-size:300%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 3s linear infinite}
+.loader-bar{width:220px;height:4px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden}
+.loader-bar span{display:block;height:100%;width:0;background:var(--grad);background-size:200%;animation:load 2s ease forwards,shimmer 1.5s linear infinite}
+@keyframes load{to{width:100%}}
+@keyframes shimmer{to{background-position:300% center}}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 6vw;background:rgba(7,6,26,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transform:translateY(-100%);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+nav.show{transform:translateY(0)}
+.logo{font-weight:800;font-size:1.25rem}
+.logo span{color:var(--pink)}
+.nav-links{display:flex;gap:30px;list-style:none}
+.nav-links a{position:relative;font-size:.92rem;color:var(--muted);transition:color .3s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--grad);transition:width .35s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.burger{display:none;background:none;border:none;color:var(--text);font-size:1.6rem}
+
+section{padding:110px 6vw;max-width:1300px;margin:0 auto}
+.section-tag{font-size:.8rem;letter-spacing:.25em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px}
+.section-title{font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:50px}
+.section-title em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* hero */
+#hero{min-height:100vh;display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:60px;padding-top:140px}
+.tag{display:inline-flex;align-items:center;gap:10px;padding:8px 18px;border:1px solid rgba(34,228,255,.35);border-radius:40px;font-size:.85rem;color:var(--cyan);background:rgba(34,228,255,.06)}
+.tag i{width:8px;height:8px;border-radius:50%;background:#2dff9a;box-shadow:0 0 10px #2dff9a;animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.3}}
+.hero-name{font-size:clamp(2.8rem,7vw,5.6rem);font-weight:800;line-height:1.02;margin:24px 0 14px;background:linear-gradient(90deg,#fff 0%,var(--pink) 25%,var(--cyan) 50%,var(--amber) 75%,#fff 100%);background-size:300% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 6s linear infinite}
+.hero-sub{font-size:1.3rem;color:var(--muted);margin-bottom:12px}
+.hero-sub b{color:var(--text);font-weight:500}
+.hero-desc{color:var(--muted);max-width:540px;margin-bottom:34px}
+.btns{display:flex;gap:16px;flex-wrap:wrap}
+.btn{padding:14px 30px;border-radius:40px;font-weight:500;transition:transform .3s,box-shadow .3s;display:inline-block}
+.btn-primary{background:linear-gradient(90deg,var(--indigo),var(--pink));color:#fff;box-shadow:0 10px 30px -10px var(--pink)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 40px -10px var(--pink)}
+.btn-ghost{border:1px solid var(--border);background:var(--card)}
+.btn-ghost:hover{border-color:var(--cyan);transform:translateY(-3px)}
+
+.hero-visual{position:relative;display:flex;justify-content:center;perspective:1000px}
+.orb{position:absolute;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,var(--pink),var(--indigo) 50%,transparent 70%);filter:blur(60px);opacity:.55;animation:pulse 5s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.15);opacity:.75}}
+.card3d{position:relative;width:340px;padding:40px 30px;border-radius:26px;background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(20px);text-align:center;transform-style:preserve-3d;animation:float3d 8s ease-in-out infinite}
+@keyframes float3d{0%,100%{transform:rotateY(-14deg) rotateX(8deg) translateY(0)}50%{transform:rotateY(14deg) rotateX(-6deg) translateY(-18px)}}
+.avatar-wrap{position:relative;width:130px;height:130px;margin:0 auto 22px}
+.avatar-ring{position:absolute;inset:-12px;border:2px dashed var(--cyan);border-radius:50%;animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.avatar{width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,var(--indigo),var(--pink));display:flex;align-items:center;justify-content:center;font-family:'Syne';font-weight:800;font-size:2.6rem;box-shadow:0 0 40px rgba(255,61,154,.5)}
+.card3d h3{font-size:1.35rem}
+.card3d p{color:var(--muted);font-size:.9rem;margin-bottom:24px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{padding:12px 4px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--border)}
+.stat b{display:block;font-family:'Syne';font-size:1.5rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{font-size:.72rem;color:var(--muted)}
+
+/* marquee */
+.marquee{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:26px 0;background:rgba(255,255,255,.02);position:relative;z-index:2;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marquee-track{display:flex;gap:60px;width:max-content;animation:marquee 30s linear infinite}
+.marquee-track span{font-family:'Syne';font-size:1.6rem;font-weight:700;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.35);white-space:nowrap;transition:color .3s}
+.marquee-track span:hover{color:var(--amber);-webkit-text-stroke:0}
+.marquee-track span::after{content:"✦";margin-left:60px;color:var(--pink);-webkit-text-stroke:0}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* skills */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 60px;margin-bottom:60px}
+.skill-top{display:flex;justify-content:space-between;margin-bottom:8px;font-size:.95rem}
+.skill-top span:last-child{color:var(--cyan)}
+.bar{height:8px;background:rgba(255,255,255,.06);border-radius:8px;overflow:hidden}
+.fill{position:relative;height:100%;width:0;border-radius:8px;background:linear-gradient(90deg,var(--indigo),var(--pink),var(--cyan));transition:width 1.6s cubic-bezier(.2,.8,.2,1);overflow:hidden}
+.fill::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);transform:translateX(-100%)}
+.fill.done::after{animation:sweep 2.2s ease-in-out infinite}
+@keyframes sweep{to{transform:translateX(100%)}}
+.chips-title{font-size:1.2rem;margin-bottom:20px}
+.chips{display:flex;flex-wrap:wrap;gap:12px}
+.chip{padding:8px 18px;border-radius:30px;background:var(--card);border:1px solid var(--border);font-size:.88rem;transition:transform .3s,border-color .3s,box-shadow .3s}
+.chip:hover{transform:translateY(-6px);border-color:var(--pink);box-shadow:0 10px 25px -10px var(--pink)}
+.chip:nth-child(4n+2):hover{border-color:var(--cyan);box-shadow:0 10px 25px -10px var(--cyan)}
+.chip:nth-child(4n+3):hover{border-color:var(--amber);box-shadow:0 10px 25px -10px var(--amber)}
+.chip:nth-child(4n):hover{border-color:var(--indigo);box-shadow:0 10px 25px -10px var(--indigo)}
+
+/* timeline */
+.timeline{position:relative;padding-left:40px}
+.timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:3px;border-radius:3px;background:linear-gradient(var(--indigo),var(--pink),var(--cyan),var(--amber),var(--indigo));background-size:100% 300%;animation:flow 6s linear infinite}
+@keyframes flow{to{background-position:0 300%}}
+.job{position:relative;padding:30px;margin-bottom:30px;border-radius:20px;background:var(--card);border:1px solid var(--border);transition:transform .4s,box-shadow .4s,border-color .4s}
+.job::before{content:"";position:absolute;left:-40px;top:36px;width:19px;height:19px;border-radius:50%;background:var(--bg);border:3px solid var(--pink);box-shadow:0 0 14px var(--pink)}
+.job:hover{transform:translateX(12px);border-color:rgba(255,61,154,.4);box-shadow:0 0 40px -10px rgba(255,61,154,.5)}
+.job-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.job h3{font-size:1.3rem}
+.date{font-size:.85rem;color:var(--amber);font-weight:500}
+.company{color:var(--cyan);margin-bottom:14px;font-size:.95rem}
+.job ul{list-style:none;color:var(--muted);margin-bottom:16px}
+.job li{padding-left:20px;position:relative;margin-bottom:6px;font-size:.95rem}
+.job li::before{content:"▹";position:absolute;left:0;color:var(--pink)}
+.badges{display:flex;flex-wrap:wrap;gap:8px}
+.badge{font-size:.75rem;padding:4px 12px;border-radius:20px;background:rgba(91,75,255,.15);border:1px solid rgba(91,75,255,.4);color:#c9c3ff}
+
+/* projects */
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.project{position:relative;padding:30px 26px;border-radius:20px;background:var(--card);border:1px solid var(--border);overflow:hidden;transition:transform .4s,box-shadow .4s;display:flex;flex-direction:column}
+.project::before{content:"";position:absolute;top:0;left:-100%;width:100%;height:3px;background:var(--grad);transition:left .6s ease}
+.project:hover{transform:translateY(-10px);box-shadow:0 25px 50px -20px rgba(34,228,255,.35)}
+.project:hover::before{left:0}
+.emoji{font-size:2.3rem;margin-bottom:14px}
+.project h3{font-size:1.15rem;margin-bottom:4px}
+.pdate{font-size:.78rem;color:var(--amber);margin-bottom:10px}
+.project p{color:var(--muted);font-size:.9rem;flex:1;margin-bottom:18px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:.72rem;padding:3px 10px;border-radius:12px;background:rgba(34,228,255,.08);border:1px solid rgba(34,228,255,.25);color:var(--cyan)}
+
+
+.store-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.store-link{display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:.8rem;color:var(--text);background:var(--card);transition:border-color .25s,transform .25s}
+.store-link:hover,.store-link:focus-visible{border-color:var(--cyan);transform:translateY(-2px)}
+.store-link svg{width:16px;height:16px;flex-shrink:0;fill:currentColor}
+
+/* education */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:50px}
+.edu{padding:30px;border-radius:20px;background:var(--card);border:1px solid var(--border);transition:border-color .3s}
+.edu:hover{border-color:var(--amber)}
+.edu .icon{font-size:2rem;margin-bottom:12px}
+.edu h3{font-size:1.15rem;margin-bottom:6px}
+.edu p{color:var(--cyan);font-size:.92rem}
+.edu small{display:block;color:var(--muted);margin-top:10px}
+.langs{display:flex;gap:20px;flex-wrap:wrap}
+.lang{display:flex;align-items:center;gap:14px;padding:16px 26px;border-radius:50px;background:var(--card);border:1px solid var(--border);animation:bob 3s ease-in-out infinite}
+.lang:nth-child(2){animation-delay:1.5s}
+@keyframes bob{50%{transform:translateY(-8px);box-shadow:0 15px 30px -15px var(--pink)}}
+.lang b{font-family:'Syne'}
+.lang span{font-size:.8rem;padding:3px 12px;border-radius:20px;background:linear-gradient(90deg,var(--pink),var(--amber));color:#fff}
+
+/* contact */
+#contact{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
+.contact-list{display:flex;flex-direction:column;gap:16px}
+.ci{display:flex;align-items:center;gap:18px;padding:18px 22px;border-radius:16px;background:var(--card);border:1px solid var(--border);transition:transform .35s,border-color .35s}
+.ci:hover{transform:translateX(12px);border-color:var(--cyan)}
+.ci .ico{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;background:linear-gradient(135deg,var(--indigo),var(--pink));flex-shrink:0}
+.ci small{display:block;color:var(--muted);font-size:.78rem}
+.ci div{word-break:break-word}
+.ripple-wrap{position:relative;width:300px;height:300px;margin:0 auto;display:flex;align-items:center;justify-content:center}
+.ripple{position:absolute;width:150px;height:150px;border-radius:50%;border:2px solid var(--pink);animation:ripple 3s ease-out infinite;opacity:0}
+.ripple:nth-child(2){animation-delay:1s;border-color:var(--cyan)}
+.ripple:nth-child(3){animation-delay:2s;border-color:var(--amber)}
+@keyframes ripple{0%{transform:scale(1);opacity:.9}100%{transform:scale(2.1);opacity:0}}
+.big-avatar{position:relative;width:150px;height:150px;border-radius:50%;background:linear-gradient(135deg,var(--indigo),var(--pink));display:flex;align-items:center;justify-content:center;font-family:'Syne';font-size:3rem;font-weight:800;animation:beat 2s ease-in-out infinite;box-shadow:0 0 60px rgba(255,61,154,.5)}
+@keyframes beat{50%{transform:scale(1.07)}}
+footer{text-align:center;padding:30px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border)}
+
+/* reveal */
+.reveal{opacity:0;transition:opacity .9s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
+.fade-up{transform:translateY(50px)}
+.slide-left{transform:translateX(-70px)}
+.slide-right{transform:translateX(70px)}
+.reveal.in{opacity:1;transform:none}
+.job.reveal.in:hover{transform:translateX(12px)}
+.project.reveal.in:hover{transform:translateY(-10px)}
+.ci.reveal.in:hover{transform:translateX(12px)}
+
+@media (max-width:960px){
+  #hero,#contact{grid-template-columns:1fr}
+  #hero{text-align:left}
+  .projects{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .nav-links{position:fixed;top:64px;right:0;left:0;flex-direction:column;align-items:center;gap:22px;padding:30px;background:rgba(7,6,26,.95);transform:translateY(-150%);transition:transform .4s}
+  .nav-links.open{transform:none}
+  .burger{display:block}
+  .skills-grid,.edu-grid,.projects{grid-template-columns:1fr}
+  section{padding:80px 6vw}
+  .card3d{width:100%;max-width:320px}
+  .orb{width:260px;height:260px}
+}
+</style>
+</head>
+<body>
+
+<div id="loader"><div class="loader-initials">AH</div><div class="loader-bar"><span></span></div></div>
+<div class="cursor-dot"></div><div class="cursor-ring"></div>
+<canvas id="particles"></canvas>
+
+<nav id="nav">
+  <a href="#hero" class="logo">Ahmed<span>.</span>Hussein</a>
+  <button class="burger" id="burger" aria-label="Menu">☰</button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+<section id="hero">
+  <div class="reveal slide-left">
+    <span class="tag"><i></i> Available for new opportunities</span>
+    <h1 class="hero-name">Ahmed Hussein<br>Hassan</h1>
+    <p class="hero-sub"><b>Mobile & Front-End Developer</b> · Flutter · React Native · ReactJS</p>
+    <p class="hero-desc">5+ years building cross-platform mobile and web apps — restaurant POS, digital ordering, social media, live streaming, hospitality, e-commerce and real-estate — with real-time chat, offline-first systems and interactive experiences.</p>
+    <div class="btns">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-visual reveal slide-right">
+    <div class="orb"></div>
+    <div class="card3d">
+      <div class="avatar-wrap"><div class="avatar-ring"></div><div class="avatar">AH</div></div>
+      <h3>Ahmed Hussein</h3>
+      <p>Mobile & Front-End Developer · Jeddah, KSA</p>
+      <div class="stats">
+        <div class="stat"><b>5+</b><span>Years Exp.</span></div>
+        <div class="stat"><b>13+</b><span>Projects</span></div>
+        <div class="stat"><b>3</b><span>Companies</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee"><div class="marquee-track" id="marquee"></div></div>
+
+<section id="skills">
+  <p class="section-tag reveal fade-up">What I do</p>
+  <h2 class="section-title reveal fade-up">Skills & <em>Expertise</em></h2>
+  <div class="skills-grid" id="skillBars"></div>
+  <h3 class="chips-title reveal fade-up">Technologies I work with</h3>
+  <div class="chips reveal fade-up" id="chips"></div>
+</section>
+
+<section id="experience">
+  <p class="section-tag reveal fade-up">Career</p>
+  <h2 class="section-title reveal fade-up">Work <em>Experience</em></h2>
+  <div class="timeline" id="timeline"></div>
+</section>
+
+<section id="projects">
+  <p class="section-tag reveal fade-up">Portfolio</p>
+  <h2 class="section-title reveal fade-up">Featured <em>Projects</em></h2>
+  <div class="projects" id="projectGrid"></div>
+</section>
+
+<section id="education">
+  <p class="section-tag reveal fade-up">Background</p>
+  <h2 class="section-title reveal fade-up">Education & <em>Languages</em></h2>
+  <div class="edu-grid">
+    <div class="edu reveal slide-left"><div class="icon">🎓</div><h3>Bachelor of Computer Engineering and Information Systems</h3><p>Kafr Elsheikh University – Faculty of Computers and Information</p><small>Sep 2016 – Jul 2020</small></div>
+    <div class="edu reveal slide-right"><div class="icon">📜</div><h3>Professional Track Certificate – Frontend Development & Cross-Platform Mobile</h3><p>Information Technology Institute (ITI)</p><small>Mar 2023 – Jul 2023</small></div>
+  </div>
+  <div class="langs reveal fade-up">
+    <div class="lang">🇸🇦 <b>Arabic</b><span>Native</span></div>
+    <div class="lang">🇬🇧 <b>English</b><span>Professional</span></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div>
+    <p class="section-tag reveal fade-up">Contact</p>
+    <h2 class="section-title reveal fade-up">Let's build <em>together</em></h2>
+    <div class="contact-list">
+      <a href="mailto:ahesain8@gmail.com" class="ci reveal slide-left"><span class="ico">✉️</span><div><small>Email</small>ahesain8@gmail.com</div></a>
+      <a href="tel:+966530560479" class="ci reveal slide-left"><span class="ico">📞</span><div><small>Phone</small>+966 53 056 0479</div></a>
+      <div class="ci reveal slide-left"><span class="ico">📍</span><div><small>Location</small>Jeddah, Saudi Arabia</div></div>
+      <div class="ci reveal slide-left"><span class="ico">🟢</span><div><small>Availability</small>Open to full-time & freelance roles</div></div>
+    </div>
+  </div>
+  <div class="reveal slide-right">
+    <div class="ripple-wrap"><div class="ripple"></div><div class="ripple"></div><div class="ripple"></div><div class="big-avatar">AH</div></div>
+  </div>
+</section>
+</main>
+<footer>© <span id="yr"></span> Ahmed Hussein Hassan · Crafted with code & motion</footer>
+
+<script>
+const skills=[["Flutter & Dart",95],["ReactJS & JavaScript",88],["React Native",82],["State Management (BLoC, Provider, GetX)",92],["REST APIs & Firebase",90],["HTML5, CSS3, SCSS & Bootstrap",88],["Architecture (MVC, MVVM, SOLID, OOP)",87],["Databases (SQL Server, SQLite)",75],["Offline-First & Performance Optimization",85],["Kotlin / OpenGL Native Integration",70]];
+const chips=["Flutter","Dart","React Native","ReactJS","JavaScript","HTML5","CSS3","SCSS","Bootstrap","Angular2","BLoC","Provider","GetX","REST APIs","Firebase","Git","GitHub","Postman","MVC","MVVM","SOLID","OOP","SQL Server","SQL","SQLite","Kotlin","OpenGL","Google Maps","Responsive Design","Mobile-First","Agile","Offline-First","Thermal Printing","Video Caching","Live Streaming","Real-time Chat","App Store","Google Play"];
+const jobs=[
+ {t:"Mobile & Front-End Developer",c:"Interflow",l:"Jeddah, Saudi Arabia",d:"Mar 2026 – Present",p:["Develop and maintain production mobile and front-end apps for restaurant management, digital ordering, and point-of-sale systems.","Build responsive UI/UX for digital menus, online ordering, POS, and restaurant management across mobile and web.","Integrate REST APIs and backend services for reliable, real-time data flow; resolve production issues and improve performance and stability.","Collaborate with backend developers and designers, and manage Git/GitHub workflows and iOS/Android releases."],b:["POS Systems","Restaurant Tech","REST APIs","App Store","Google Play"]},
+ {t:"Mobile & Front-End Developer",c:"Amjaad Technology",l:"Maadi, Cairo",d:"Nov 2023 – Feb 2026",p:["Designed and developed cross-platform mobile apps with Flutter and responsive web apps with ReactJS.","Implemented BLoC, GetX, and Provider state management for performance and maintainability.","Integrated RESTful APIs and optimized UI rendering, state updates, navigation, and data handling."],b:["Flutter","ReactJS","BLoC","GetX","Provider"]},
+ {t:"Mobile & Front-End Developer",c:"IGMA Co.",l:"Kafr Elsheikh, Egypt",d:"Jan 2022 – Oct 2023",p:["Led the analysis, design, and development of mobile apps, enhancing performance, usability, and UX.","Gathered requirements and resolved production issues with business and operations teams; conducted rigorous testing and debugging."],b:["Mobile Apps","Requirements","Testing","Debugging"]}
+];
+const projects=[
+ ["🧾","Interflow Cashier POS","Jun 2026 – Present","Production POS for restaurants, cafés & retail: sales, tables, online orders, payments, multi-printer kitchen printing, shifts and end-of-day reports — with reliable offline operation and sync.",["Flutter","Offline-First","Thermal Printing","REST APIs"]],
+ ["🍽️","Interflow Restaurant Platform","Jun 2026 – Present","Digital menus, cashier/POS and order management in one app, with reports, analytics, and multi-store, multi-user support for chains and franchises.",["Flutter","Analytics","Multi-tenant"]],
+ ["🛵","NAFA – Food Ordering & Delivery","Jun 2026 – Present","Menu browsing, cart, delivery & pickup, branch selection, address management, order tracking, in-app wallet and cash payment.",["Flutter","Wallet","Order Tracking"]],
+ ["🎬","Bimo-Bond by DCC","Mar 2026 – Jun 2026","TikTok-style platform with vertical video feeds, camera effects, live streaming, real-time chat, auctions and native Kotlin/OpenGL GPU overlays and 360° effects.",["Flutter","Kotlin","OpenGL","Live Streaming"]],
+ ["💧","ioMeter Pump","Android · Google Play","Smart IoT app with real-time pump status, water flow & pressure monitoring, usage analytics, historical reports and smart alerts.",["Flutter","IoT","Real-time"]],
+ ["🏘️","ioMeter Community","Nov 2023 – Feb 2026","Community platform — feature implementation and performance optimization. Live on Google Play and the App Store.",["Flutter","Performance"]],
+ ["🏨","JW Marriott Residences Al Jazi","Nov 2023 – Feb 2026","Mobile solution for luxury residences with seamless integration of resident services.",["Flutter","Hospitality"]],
+ ["🧜‍♀️","Lasirena App","May 2025 – Feb 2026","Ongoing development focused on user experience and advanced functionality.",["Flutter","UX"]],
+ ["🗼","Manara App","Jul 2025 – Feb 2026","Ongoing development focused on user experience and advanced functionality.",["Flutter","UX"]],
+ ["🛎️","Easy Hotel","Jan 2023 – Jun 2023","Hotel booking with search, e-payments, Google Maps location, notifications and discount coupons.",["Flutter","GetX","MVC","Java"]],
+ ["📊","Toby CRM Desktop","Jan 2023 – Jul 2023","Desktop CRM application built with Flutter and Provider on an MVVM architecture with a Java backend.",["Flutter Desktop","Provider","MVVM"]],
+ ["🚗","Tawsila – Ride-Hailing","Mobile App","Scalable Uber-like app with real-time driver tracking, Google Maps navigation and ride booking.",["Flutter","Google Maps","Real-time"]],
+ ["📚","easyEducation","Learning App","Teachers upload lessons and quizzes; students study, take tests and receive feedback.",["Flutter","Firebase"]],
+ ["🛍️","Easy-Shop","Jul 2023 – Nov 2023","Scalable e-commerce app to browse products, add to cart, place orders and manage profiles.",["Flutter","E-Commerce","REST APIs"]]
+];
+const companies=["Interflow","Amjaad Technology","IGMA Co.","DCC","ioMeter","JW Marriott Residences","NAFA","ITI","Lasirena","Manara"];
+
+document.getElementById('yr').textContent=new Date().getFullYear();
+document.getElementById('skillBars').innerHTML=skills.map((s,i)=>`<div class="reveal ${i%2?'slide-right':'slide-left'}"><div class="skill-top"><span>${s[0]}</span><span>${s[1]}%</span></div><div class="bar"><div class="fill" data-w="${s[1]}"></div></div></div>`).join('');
+document.getElementById('chips').innerHTML=chips.map(c=>`<span class="chip">${c}</span>`).join('');
+document.getElementById('timeline').innerHTML=jobs.map(j=>`<div class="job reveal slide-right"><div class="job-head"><h3>${j.t}</h3><span class="date">${j.d}</span></div><p class="company">${j.c} · ${j.l}</p><ul>${j.p.map(x=>`<li>${x}</li>`).join('')}</ul><div class="badges">${j.b.map(x=>`<span class="badge">${x}</span>`).join('')}</div></div>`).join('');
+const projectStoreLinks={"Interflow Cashier POS": [{"label": "Google Play", "url": "https://play.google.com/store/apps/details?id=sa.interflow.app"}], "Interflow Restaurant Platform": [{"label": "Google Play", "url": "https://play.google.com/store/apps/details?id=sa.interflow.app"}], "NAFA – Food Ordering & Delivery": [{"label": "Google Play", "url": "https://play.google.com/store/apps/details?id=sa.interflow.nafa"}], "ioMeter Pump": [{"label": "Google Play", "url": "https://play.google.com/store/apps/details?id=com.iometer.pump"}], "ioMeter Community": [{"label": "Google Play", "url": "https://play.google.com/store/apps/details?id=com.thed.iometer"}, {"label": "App Store", "url": "https://apps.apple.com/sa/app/iometer-community/id1588429456"}], "JW Marriott Residences Al Jazi": [{"label": "Google Play", "url": "https://play.google.com/store/apps/details?id=com.iometer.jwmarriott"}, {"label": "App Store", "url": "https://apps.apple.com/ae/app/jw-marriott-residences-al-jazi/id6670202084"}], "Lasirena App": [{"label": "Google Play", "url": "https://play.google.com/store/apps/details?id=com.iometer.lasirena"}, {"label": "App Store", "url": "https://apps.apple.com/eg/app/lasirena-community/id6748661226"}], "Manara App": [{"label": "Google Play", "url": "https://play.google.com/store/apps/details?id=com.iometer.manara"}, {"label": "App Store", "url": "https://apps.apple.com/sa/app/manara-community/id6748657715"}]};
+const storeIcons={"Google Play": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 3v18l16-9L4 3Z\"/></svg>", "App Store": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M16.6 12.5c0-2 1.6-3 1.7-3.1-1-1.5-2.5-1.7-3-1.7-1.3-.1-2.5.8-3.2.8-.6 0-1.7-.8-2.8-.8-1.5 0-3 .9-3.8 2.2-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.6 2.2 2.8 2.1 1.1 0 1.6-.7 3-.7s1.8.7 3 .7 1.9-1.1 2.6-2.1c.9-1.3 1.2-2.6 1.2-2.7-.1 0-2.6-1-2.6-3.7ZM14.4 6.2c.6-.8 1.1-1.9 1-3-1 .1-2.2.7-2.9 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.2-.6 2.9-1.4Z\"/></svg>"};
+document.getElementById('projectGrid').innerHTML=projects.map(p=>`<div class="project reveal fade-up"><div class="emoji">${p[0]}</div><h3>${p[1]}</h3><div class="pdate">${p[2]}</div><p>${p[3]}</p><div class="tags">${p[4].map(t=>`<span>${t}</span>`).join('')}</div>${projectStoreLinks[p[1]] ? `<div class="store-links">${projectStoreLinks[p[1]].map(s=>`<a class="store-link" href="${s.url}" target="_blank" rel="noopener noreferrer" aria-label="${p[1]} on ${s.label}">${storeIcons[s.label]}${s.label}</a>`).join('')}</div>` : ''}</div>`).join('');
+document.getElementById('marquee').innerHTML=[...companies,...companies].map(c=>`<span>${c}</span>`).join('');
+
+// loader
+window.addEventListener('load',()=>setTimeout(()=>{document.getElementById('loader').classList.add('hide');document.getElementById('nav').classList.add('show')},2000));
+
+// cursor
+const dot=document.querySelector('.cursor-dot'),ring=document.querySelector('.cursor-ring');
+let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`});
+(function loop(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;ring.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;requestAnimationFrame(loop)})();
+document.addEventListener('mouseover',e=>{ring.classList.toggle('hover',!!e.target.closest('a,button,.chip,.project,.job,.ci'))});
+
+// particles
+const cv=document.getElementById('particles'),ctx=cv.getContext('2d');
+const cols=['91,75,255','255,61,154','34,228,255','255,182,39'];let pts=[];
+function size(){cv.width=innerWidth;cv.height=innerHeight;const n=Math.min(110,Math.floor(innerWidth*innerHeight/14000));pts=Array.from({length:n},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5,r:Math.random()*2+1,c:cols[Math.floor(Math.random()*4)]}))}
+size();addEventListener('resize',size);
+(function draw(){ctx.clearRect(0,0,cv.width,cv.height);
+ for(let i=0;i<pts.length;i++){const p=pts[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>cv.width)p.vx*=-1;if(p.y<0||p.y>cv.height)p.vy*=-1;
+  ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(${p.c},.8)`;ctx.fill();
+  for(let j=i+1;j<pts.length;j++){const q=pts[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<130){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle=`rgba(${p.c},${(1-d/130)*.35})`;ctx.lineWidth=.8;ctx.stroke()}}
+  const dm=Math.hypot(p.x-mx,p.y-my);if(dm<160){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mx,my);ctx.strokeStyle=`rgba(${p.c},${(1-dm/160)*.4})`;ctx.stroke()}}
+ requestAnimationFrame(draw)})();
+
+// reveal + skill bars
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll('.fill').forEach(f=>{f.style.width=f.dataset.w+'%';setTimeout(()=>f.classList.add('done'),1600)});io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// mobile menu
+const nl=document.getElementById('navLinks');
+document.getElementById('burger').onclick=()=>nl.classList.toggle('open');
+nl.querySelectorAll('a').forEach(a=>a.onclick=()=>nl.classList.remove('open'));
+</script>
+</body>
+</html>
